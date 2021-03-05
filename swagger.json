@@ -1,0 +1,391 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "My New Project CRUD",
+        "description": "My New Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Index",
+            "description": "API for signin and signup in the system"
+        },
+        {
+            "name": "Users",
+            "description": "API for users in the system"
+        },
+        {
+            "name": "Notes",
+            "description": "API for notes in the system"
+        }
+
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/index/register": {
+            "post": {
+                "tags": [
+                    "Index"
+                ],
+                "description": "To sign-up in the system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User sign-up",
+                        "schema": {
+                            "$ref": "#/definitions/UserRegister"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign-up completed!",
+                        "schema": {
+                            "$ref": "#/definitions/UserRegister"
+                        }
+                    }
+                }
+            }
+        },
+        "/index/login": {
+            "post": {
+                "tags": [
+                    "Index"
+                ],
+                "description": "To sign-in in the system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User sign-in",
+                        "schema": {
+                            "$ref": "#/definitions/UserLogin"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign-in succesful",
+                        "schema": {
+                            "$ref": "#/definitions/UserLogin"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Create new user in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userId}": {
+            "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user with given ID",
+                "responses": {
+                    "200": {
+                        "description": "User is found",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete user with given ID",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update user with give ID",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User is updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/notes": {
+            "post": {
+                "tags": [
+                    "Notes"
+                ],
+                "description": "Create new note in system",
+                "parameters": [
+                    {
+                        "name": "note",
+                        "in": "body",
+                        "description": "Note that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New note is created",
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Notes"
+                ],
+                "summary": "Get all notes in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Notes"
+                        }
+                    }
+                }
+            }
+        },
+        "/notes/{noteId}": {
+            "parameters": [
+                {
+                    "name": "noteId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of note that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Notes"
+                ],
+                "summary": "Get note with given ID",
+                "responses": {
+                    "200": {
+                        "description": "Note is found",
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete note with given ID",
+                "tags": [
+                    "Notes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update note with give ID",
+                "tags": [
+                    "Notes"
+                ],
+                "parameters": [
+                    {
+                        "name": "note",
+                        "in": "body",
+                        "description": "Note with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note is updated",
+                        "schema": {
+                            "$ref": "#/definitions/Note"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "email",
+                "username",
+                "password"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description":" user name"
+                },
+                "email": {
+                    "type": "string",
+                    "description":" user mail address"
+                },
+                "password": {
+                    "type": "string",
+                    "description":" user password"
+                }
+            }
+        },
+        "Note": {
+            "required": [
+                "title",
+                "description",
+                "user_id"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description":" title of Note"
+                },
+                "description": {
+                    "type": "string",
+                    "description":"description of Note"
+                },
+                "user_id": {
+                    "type": "string",
+                    "description":"User id of Note"
+                }
+            }
+        },
+        "UserRegister": {
+            "required": [
+                "username",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description":"User name"
+                },
+                "email": {
+                    "type": "string",
+                    "description":"User email"
+                },
+                "password": {
+                    "type": "string",
+                    "description":"User password"
+                }
+            }
+		},
+		"UserLogin": {
+            "required": [
+                "username",
+                "password"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description":"User name"
+                },
+                "password": {
+                    "type": "string",
+                    "description":"User password"
+                }
+            }
+        }
+    }
+}
