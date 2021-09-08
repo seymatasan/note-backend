@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-const MONGOURI = "mongodb+srv://dbUser:S412474t@note.ivng8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const MONGOURI = "";
 
 const MongoServer = async () => {
   mongoose
